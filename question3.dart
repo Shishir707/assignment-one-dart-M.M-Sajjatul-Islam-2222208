@@ -26,22 +26,35 @@ class BankAccount {
   //    - deposit(double amount): Add money to account
   // TODO: Implement the deposit method
   void deposit(double amount) {
-    // TODO: Add the amount to balance
+    balance += amount;
+    print('=================================');
+    print('✅ Deposit Successful!');
+    print('Amount Deposited: \$${amount.toStringAsFixed(2)}');
+    print('New Balance: \$${balance.toStringAsFixed(2)}');
   }
 
   //    - withdraw(double amount): Remove money from account (check for sufficient funds)
   // TODO: Implement the withdraw method
   void withdraw(double amount) {
     // TODO: Check for sufficient funds and subtract amount
+    print('=================================');
+    if (amount <= balance){
+      balance -= amount;
+      print('✅ Withdrawal Successful!');
+      print('Remaining Balance: \$${balance.toStringAsFixed(2)}');
+    }
     // TODO: Print error message if insufficient funds
     // Expected error format: "Insufficient funds for withdrawal of <amount> from account <accountNumber>"
+    else {
+      print('❌ "Insufficient funds for withdrawal of $amount from account $accountNumber"');
+    }
   }
 
   //    - getBalance(): Return current balance
   // TODO: Implement the getBalance method
   double getBalance() {
-    // TODO: Return the current balance
-    return 0.0;
+    print('=================================');
+    return balance;
   }
 
   //    - displayAccountInfo(): Show account details
@@ -49,6 +62,12 @@ class BankAccount {
   void displayAccountInfo() {
     // TODO: Display account information
     // Expected format: "Account: <number>, Holder: <name>, Type: <type>, Balance: <balance>"
+    print('=================Account Information of $accountHolder================');
+    print('Account : $accountNumber');
+    print('Holder : $accountHolder');
+    print('Type : $accountType');
+    print('Balance : $balance');
+
   }
 }
 
@@ -60,18 +79,27 @@ void main() {
   //    - Handling insufficient funds scenario
 
   // TODO: Create 3 bank accounts:
-  // 1. Account: 12345, Holder: Alice, Type: Savings
-  // 2. Account: 67890, Holder: Bob, Type: Checking
-  // 3. Account: 11111, Holder: Charlie, Type: Savings
+  BankAccount account1 = BankAccount('12345', 'Rafiq', 'Savings');
+  BankAccount account2 = BankAccount('67890', 'Jabbar', 'Checking');
+  BankAccount account3 = BankAccount('11111', 'salam', 'Savings');
 
   // TODO: Demonstrate depositing money:
   // Account 1: 1000.0, Account 2: 500.0, Account 3: 2000.0
+  account1.deposit(1000.0);
+  account2.deposit(500.0);
+  account3.deposit(2000.0);
 
   // TODO: Demonstrate withdrawing money:
   // Account 1: 200.0, Account 2: 100.0
+  account1.withdraw(200.0);
+  account2.withdraw(100.0);
 
   // TODO: Display account information for all accounts
+  account1.displayAccountInfo();
+  account2.displayAccountInfo();
+  account3.displayAccountInfo();
 
   // TODO: Demonstrate insufficient funds scenario:
   // Withdraw 1000.0 from Account 2
+  account2.withdraw(1000.0);
 }
