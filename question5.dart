@@ -21,11 +21,12 @@
 mixin Payable {
   double calculateSalary(double baseSalary, double bonus) {
     // TODO: Calculate total salary (base + bonus)
-    return 0.0;
+    return baseSalary + bonus;
   }
 
   void processPayment(double amount) {
     // TODO: Process payment and print "Payment processed: <amount>"
+    print("💳 Payment processed: \$${amount.toStringAsFixed(2)}");
   }
 }
 
@@ -34,7 +35,7 @@ mixin Payable {
 mixin Reportable {
   String generateReport(String employeeName, String department) {
     // TODO: Generate and return report string: "Report: Monthly report for <name> in <department> department"
-    return "";
+    return '📄 Report: Monthly report for $employeeName in $department department';
   }
 }
 
@@ -54,6 +55,9 @@ abstract class Employee {
 
   void displayInfo() {
     // TODO: Display employee information
+    print("$name (ID: $id, Department: $department)");
+    print("Job Title: ${getJobTitle()}");
+    print("Base Salary: \$${getBaseSalary().toStringAsFixed(2)}");
   }
 }
 
@@ -70,18 +74,21 @@ class Manager extends Employee with Payable, Reportable {
   @override
   String getJobTitle() {
     // TODO: Return manager job title
-    return "";
+    return 'Manager';
   }
 
   @override
   double getBaseSalary() {
     // TODO: Return manager base salary
-    return 0.0;
+    return 8000.0;
   }
 
   @override
   void displayInfo() {
     // TODO: Override to show manager-specific info as shown in expected output
+    print('Manager Information');
+    super.displayInfo();
+    print('Team Size : $teamSize');
   }
 }
 
@@ -97,18 +104,21 @@ class Developer extends Employee with Payable {
   @override
   String getJobTitle() {
     // TODO: Return developer job title
-    return "";
+    return "Senior Developer";
   }
 
   @override
   double getBaseSalary() {
     // TODO: Return developer base salary
-    return 0.0;
+    return 6000.0;
   }
 
   @override
   void displayInfo() {
     // TODO: Override to show developer-specific info as shown in expected output
+    print('Senior Developer Information');
+    super.displayInfo();
+    print('Programming Language : $programmingLanguage');
   }
 }
 
@@ -120,10 +130,21 @@ void main() {
   //    - Display all employee information
 
   // TODO: Create one Manager and one Developer with the details shown in expected output
+  Manager manager = Manager('Alice', 'M101', 'Sales', 10);
+  Developer developer = Developer('Bob smith', 'D202', 'IT', 'Dart');
 
   // TODO: Demonstrate salary calculation and payment processing for both
+  double managerSalary = manager.calculateSalary(manager.getBaseSalary(), 15000);
+  double developerSalary = developer.calculateSalary(developer.getBaseSalary(), 8000);
 
   // TODO: Generate and print report for the Manager
+  manager.displayInfo();
+  print('Total Salary (with bonus): \$${managerSalary.toStringAsFixed(2)}');
+  manager.processPayment(managerSalary);
+  print('\n${manager.generateReport(manager.name, manager.department)}');
 
   // TODO: Display information for both employees
+  developer.displayInfo();
+  print('Total Salary (with bonus): \$${developerSalary.toStringAsFixed(2)}');
+  developer.processPayment(developerSalary);
 }
