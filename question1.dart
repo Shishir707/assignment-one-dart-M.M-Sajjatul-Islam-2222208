@@ -29,28 +29,28 @@ double calculateBMI(double weight, double height) {
 // TODO: Implement the getGrade function
 String getGrade(int score) {
   if (score >= 90 && score<= 100){
-    return "A";
+    return 'A';
   }
   else if (score >= 80 && score<= 89){
-    return "B";
+    return 'B';
   }
   else if (score >= 70 && score<= 79){
-    return "C";
+    return 'C';
   }
   else if (score >= 60 && score<= 69){
-    return "D";
+    return 'D';
   }
   else if (score < 60){
-    return "F";
+    return 'F';
   }
   else {
-    return "Enter valid Score. Try Again..!";
+    return 'Enter valid Score. Try Again..!';
   }
 }
 
 void main() {
   // TODO: Initialize your variables with appropriate values
-  String name = "M.M Sajjatul Islam";
+  String name = 'M.M Sajjatul Islam';
   int age = 25;
   double height = 5.11;
   double weight = 85;
