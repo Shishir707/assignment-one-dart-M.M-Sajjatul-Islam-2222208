@@ -1,4 +1,5 @@
 // Question 4: Inheritance & Polymorphism (Difficulty: 4/5) ⭐⭐⭐⭐
+
 /**
  * EXPECTED OUTPUT:
  * Vehicle Info: 2020 Toyota Camry (4 doors)
@@ -32,12 +33,17 @@ abstract class Vehicle {
   // Concrete method
   void displayInfo() {
     // TODO: Display vehicle information
+    print('===== Vehicle Information');
+    print('Year : $year');
+    print('Brand : $brand');
+    print('Model : $model');
   }
 
   // Add a method to calculate vehicle age (current year - vehicle year)
   int calculateAge() {
     // TODO: Calculate and return vehicle age
-    return 0;
+    final thisYear = DateTime.now().year;
+    return thisYear - year;
   }
 }
 
@@ -54,16 +60,25 @@ class Car extends Vehicle {
   @override
   void start() {
     // TODO: Implement car start method
+    print('🚘 System check complete ✔');
+    print('🔋 Battery OK | ⛽ Fuel OK');
+    print('🚗 Car Engine Started...!');
   }
 
   @override
   void stop() {
     // TODO: Implement car stop method
+    print('⚙️ Engine shutting down...');
+    print('🚗 Car stopped successfully.');
   }
 
   @override
   void displayInfo() {
     // TODO: Override to show car-specific info as shown in expected output
+    print('===== Vehicle Information');
+    print('Year : $year');
+    print('Brand : $brand');
+    print('Model : $model');
   }
 }
 
@@ -79,24 +94,43 @@ class Motorcycle extends Vehicle {
   @override
   void start() {
     // TODO: Implement motorcycle start method
+    print('Starting the Motorcycle engine...');
   }
 
   @override
   void stop() {
     // TODO: Implement motorcycle stop method
+    print('Stopping the Motorcycle engine...');
   }
 
   @override
   void displayInfo() {
     // TODO: Override to show motorcycle-specific info as shown in expected output
+    print('===== Vehicle Information');
+    print('Year : $year');
+    print('Brand : $brand');
+    print('Model : $model');
   }
 }
 
 void main() {
   // 3. Create a list of vehicles and demonstrate polymorphism by calling start(), stop(), and displayInfo() on each vehicle
   // TODO: Create a list containing one Car and one Motorcycle
+  List<Vehicle> vehicles = [
+    Car('Toyota', 'Corolla', 2021, 4),
+    Car('Honda', 'Civic', 2022, 4),
+    Motorcycle('Yamaha', 'R15', 2022, false),
+  ];
 
   // TODO: Loop through the list and call displayInfo(), start(), and stop()
+  for (final vehicle in vehicles){
+    final name = vehicle.model;
+    vehicle..displayInfo()
+    ..start()
+    ..stop();
 
-  // TODO: Print the age of each vehicle using calculateAge()
+    // TODO: Print the age of each vehicle using calculateAge()
+    final age = vehicle.calculateAge();
+    print('This $name was bought about $age years ago.');
+  }
 }
